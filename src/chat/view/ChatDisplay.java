@@ -27,6 +27,6 @@ public class ChatDisplay
 	 */
 	public void displayText(String displayText)
 	{
-		
+		JOptionPane.showMessageDialog(null, displayText);
 	}
 }

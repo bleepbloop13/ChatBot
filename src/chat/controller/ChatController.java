@@ -6,7 +6,7 @@ import chat.view.ChatDisplay;
 /**
  * 
  * @author rbak9218
- * @version 1.3 10/23/15 Added chat() method
+ * @version 1.4 10/30/15 Modified chat() method to add use of contentChecker and memeChecker
  */
 public class ChatController
 {
@@ -36,8 +36,11 @@ public class ChatController
 			{
 				display.displayText("Wow, I had no idea you loved " + roryBot.getContent());
 			}
-				
-			textFromUser = display.getUserInput(textFromUser);
+			if(roryBot.memeChecker(textFromUser))
+			{
+				display.displayText("Oh boy, " + roryBot.getUserName() + ", that sure is a dank meme.");
+			}
+			textFromUser = display.getUserInput("wow, " + textFromUser);
 		
 		}
 		

@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Base version of the 2015 Chatbot class. Only stub methods are provided. Students will complete methods as part of the project.
  * 
  * @author Rory Baker
- * @version 1.2 10/28/15 Completed the contentChecker method.
+ * @version 1.3 10/30/15 Completed the memeChecker method.
  */
 public class Chatbot
 {
@@ -35,9 +35,9 @@ public class Chatbot
 		this.memesList.add("Doge");
 		this.memesList.add("Just walk up and down smash?");
 		this.memesList.add("Wombo Combo");
-		this.memesList.add("John Cena");
+		this.memesList.add("Just Do It");
 		this.memesList.add("200% Mad");
-		this.memesList.add("Do a barrel roll!");
+		this.memesList.add("one does not simply");
 		this.memesList.add("Spiderman memes");
 		this.memesList.add("It was me, Dio!");
 		this.memesList.add("MLG Game Covers");
@@ -113,7 +113,17 @@ public class Chatbot
 	 */
 	public boolean memeChecker(String currentInput)
 	{
-		return false;
+		boolean hasMeme = false;
+		
+		for(String meme : memesList)
+		{
+			if(currentInput.toLowerCase().contains(meme.toLowerCase()))
+			{
+				hasMeme = true;
+			}
+		}
+		
+		return hasMeme;
 	}
 
 	/**

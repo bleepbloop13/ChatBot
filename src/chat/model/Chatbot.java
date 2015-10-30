@@ -27,6 +27,8 @@ public class Chatbot
 		this.memesList = new ArrayList<String>();
 		this.politicalTopicList = new ArrayList<String>();
 		this.content = "Super Smash Bros Melee";
+		buildMemesList();
+		buildPoliticalTopicsList();
 	}
 
 	private void buildMemesList()

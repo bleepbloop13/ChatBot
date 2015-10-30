@@ -29,20 +29,21 @@ public class ChatController
 	private void chat()
 	{
 		String textFromUser = display.getUserInput("Talk to the chatbot");
-		
+
 		while (roryBot.lengthChecker(textFromUser))
 		{
-			if(roryBot.contentChecker(textFromUser))
+			if (roryBot.contentChecker(textFromUser))
 			{
 				display.displayText("Wow, I had no idea you loved " + roryBot.getContent());
 			}
-			if(roryBot.memeChecker(textFromUser))
+
+			else if (roryBot.memeChecker(textFromUser))
 			{
 				display.displayText("Oh boy, " + roryBot.getUserName() + ", that sure is a dank meme.");
 			}
-			textFromUser = display.getUserInput("wow, " + textFromUser);
-		
+			textFromUser = display.getUserInput(textFromUser);
+
 		}
-		
+
 	}
 }

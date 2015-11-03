@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Base version of the 2015 Chatbot class. Only stub methods are provided. Students will complete methods as part of the project.
  * 
  * @author Rory Baker
- * @version 1.3 10/30/15 Completed the memeChecker method.
+ * @version 1.4 11/3/15 Completed the politicalTopicChecker method.
  */
 public class Chatbot
 {
@@ -47,7 +47,20 @@ public class Chatbot
 
 	private void buildPoliticalTopicsList()
 	{
-
+		this.politicalTopicList.add("Donald Trump");
+		this.politicalTopicList.add("Bernie Sanders");
+		this.politicalTopicList.add("Hillary Clinton");
+		this.politicalTopicList.add("Joe Biden");
+		this.politicalTopicList.add("election");
+		this.politicalTopicList.add("democrat");
+		this.politicalTopicList.add("republican");
+		this.politicalTopicList.add("liberal");
+		this.politicalTopicList.add("conservative");
+		this.politicalTopicList.add("Ben Carson");
+		this.politicalTopicList.add("Marco Rubio");
+		this.politicalTopicList.add("Carly Fiorina");
+		this.politicalTopicList.add("vote");
+		this.politicalTopicList.add("11/8/2016");
 	}
 
 	/**
@@ -103,7 +116,17 @@ public class Chatbot
 	 */
 	public boolean politicalTopicChecker(String currentInput)
 	{
-		return false;
+		boolean hasPolitics = false;
+
+		for (String politics : politicalTopicList)
+		{
+			if (currentInput.toLowerCase().contains(politics.toLowerCase()))
+			{
+				hasPolitics = true;
+			}
+		}
+
+		return hasPolitics;
 	}
 
 	/**
@@ -116,15 +139,15 @@ public class Chatbot
 	public boolean memeChecker(String currentInput)
 	{
 		boolean hasMeme = false;
-		
-		for(String meme : memesList)
+
+		for (String meme : memesList)
 		{
-			if(currentInput.toLowerCase().contains(meme.toLowerCase()))
+			if (currentInput.toLowerCase().contains(meme.toLowerCase()))
 			{
 				hasMeme = true;
 			}
 		}
-		
+
 		return hasMeme;
 	}
 

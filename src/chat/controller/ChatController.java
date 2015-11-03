@@ -5,8 +5,8 @@ import chat.view.ChatDisplay;
 
 /**
  * 
- * @author rbak9218
- * @version 1.4 10/30/15 Modified chat() method to add use of contentChecker and memeChecker
+ * @author Rory Baker
+ * @version 1.5 11/3/15 Modified chat() method to add use of politicalTopicChecker().
  */
 public class ChatController
 {
@@ -41,7 +41,12 @@ public class ChatController
 			{
 				display.displayText("Oh boy, " + roryBot.getUserName() + ", that sure is a dank meme.");
 			}
-			textFromUser = display.getUserInput(textFromUser);
+
+			else if (roryBot.politicalTopicChecker(textFromUser))
+			{
+				display.displayText("You sure seem excited for the election " + roryBot.getUserName() + ". Me too!");
+			}
+			textFromUser = display.getUserInput("wow " + textFromUser);
 
 		}
 

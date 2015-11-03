@@ -151,6 +151,51 @@ public class Chatbot
 		return hasMeme;
 	}
 
+	public String processQuestion(String currentInput)
+	{
+		String answer;
+		answer = "oh, what else uld you like to talk about?";
+		int newTopic = (int) (Math.random() * 5); // Generates a number between 0 and 4
+
+		switch (newTopic)
+		{
+		case 0:
+			if (contentChecker(currentInput))
+			{
+				answer = "That's my favorite topic! What else do you like?";
+			}
+			break;
+		case 1:
+			if (memeChecker(currentInput))
+			{
+				answer = "That meme is the dankest of all! Wowzaz! Where do you get your clothes?";
+			}
+			break;
+		case 2:
+			if (politicalTopicChecker(currentInput))
+			{
+				answer = "You seem very interested in politics. Do you like ice cream?";
+			}
+			break;
+		case 3:
+			if (currentInput.length() > 24)
+			{
+				answer = "You are quite fluent in speech! How often do you shower?";
+			}
+			break;
+		case 4:
+			// Random topic
+			answer = "Wow. Where do you live? Just wondering, teehee ;)";
+			break;
+		default:
+			// Should never happen
+			answer = "I'M GONNA EAT YOUR SOUL!!!!1!!!";
+			break;
+		}
+
+		return answer;
+	}
+
 	/**
 	 * Returns the username of this Chatbot instance.
 	 * 
@@ -178,7 +223,7 @@ public class Chatbot
 	 */
 	public ArrayList<String> getMemesList()
 	{
-		return null;
+		return memesList;
 	}
 
 	/**
@@ -188,7 +233,7 @@ public class Chatbot
 	 */
 	public ArrayList<String> getPoliticalTopicList()
 	{
-		return null;
+		return politicalTopicList;
 	}
 
 	/**

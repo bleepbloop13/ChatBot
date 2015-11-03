@@ -39,12 +39,13 @@ public class ChatController
 
 			else if (roryBot.memeChecker(textFromUser))
 			{
-				display.displayText("Oh boy, " + roryBot.getUserName() + ", that sure is a dank meme.");
+				display.displayText("Oh boy, " + roryBot.getUserName() + ", these are my favorite memes: " + roryBot.getMemesList());
 			}
 
 			else if (roryBot.politicalTopicChecker(textFromUser))
 			{
-				display.displayText("You sure seem excited for the election " + roryBot.getUserName() + ". Me too!");
+				display.displayText("You sure seem excited for the election " + roryBot.getUserName() + 
+						". Me too!");
 			}
 			textFromUser = display.getUserInput("wow " + textFromUser);
 

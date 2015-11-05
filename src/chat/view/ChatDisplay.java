@@ -1,6 +1,7 @@
 package chat.view;
 
 import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
 /**
  * 
  * @author rbak9218
@@ -8,6 +9,14 @@ import javax.swing.JOptionPane;
  */
 public class ChatDisplay
 {
+	private String windowMessage;
+	private ImageIcon chatIcon;
+	
+	public ChatDisplay()
+	{
+		windowMessage = "This message is brought to you by NPR stations from North America. Thank you always.";
+		chatIcon = new ImageIcon(getClass().getResource("images/vaultboy.png"));
+	}
 	
 	/**
 	 * Takes the users input from a pop-up.

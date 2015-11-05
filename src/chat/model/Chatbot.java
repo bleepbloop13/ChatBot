@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Base version of the 2015 Chatbot class. Only stub methods are provided. Students will complete methods as part of the project.
  * 
  * @author Rory Baker
- * @version 1.4 11/3/15 Completed the politicalTopicChecker method.
+ * @version 1.5 11/5/15 Completed processQuestion method
  */
 public class Chatbot
 {
@@ -60,7 +60,7 @@ public class Chatbot
 		this.politicalTopicList.add("Marco Rubio");
 		this.politicalTopicList.add("Carly Fiorina");
 		this.politicalTopicList.add("vote");
-		this.politicalTopicList.add("11/8/2016");
+		this.politicalTopicList.add("11/8/2015");
 	}
 
 	/**
@@ -154,7 +154,7 @@ public class Chatbot
 	public String processQuestion(String currentInput)
 	{
 		String answer;
-		answer = "oh, what else uld you like to talk about?";
+		answer = "oh, what else would you like to talk about?";
 		int newTopic = (int) (Math.random() * 5); // Generates a number between 0 and 4
 
 		switch (newTopic)

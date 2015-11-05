@@ -14,7 +14,7 @@ public class ChatDisplay
 	
 	public ChatDisplay()
 	{
-		windowMessage = "This message is brought to you by NPR stations from North America. Thank you again, as always.";
+		windowMessage = "Thank you for choosing chatbot! :D";
 		chatIcon = new ImageIcon(getClass().getResource("images/vaultboy.png"));
 	}
 	
@@ -36,6 +36,6 @@ public class ChatDisplay
 	 */
 	public void displayText(String displayText)
 	{
-		JOptionPane.showMessageDialog(null, displayText);
+		JOptionPane.showMessageDialog(null, displayText, windowMessage, JOptionPane.PLAIN_MESSAGE, chatIcon);
 	}
 }

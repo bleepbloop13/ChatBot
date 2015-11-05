@@ -4,8 +4,8 @@ import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 /**
  * 
- * @author rbak9218
- * @version 1.0 10/21/15
+ * @author Rory Baker
+ * @version 1.2 11/5/15 Added icon to the input window.
  */
 public class ChatDisplay
 {
@@ -14,7 +14,7 @@ public class ChatDisplay
 	
 	public ChatDisplay()
 	{
-		windowMessage = "This message is brought to you by NPR stations from North America. Thank you always.";
+		windowMessage = "This message is brought to you by NPR stations from North America. Thank you again, as always.";
 		chatIcon = new ImageIcon(getClass().getResource("images/vaultboy.png"));
 	}
 	
@@ -26,7 +26,7 @@ public class ChatDisplay
 	public String getUserInput(String input)
 	{
 		String answer = "";
-		answer = JOptionPane.showInputDialog(null, input);
+		answer = JOptionPane.showInputDialog(null, input, windowMessage, JOptionPane.INFORMATION_MESSAGE, chatIcon, null, "Type here please").toString();
 		return answer;
 	}
 	

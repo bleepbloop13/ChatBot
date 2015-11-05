@@ -1,13 +1,22 @@
 package chat.view;
 
 import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
 /**
  * 
- * @author rbak9218
- * @version 1.0 10/21/15
+ * @author Rory Baker
+ * @version 1.2 11/5/15 Added icon to the input window.
  */
 public class ChatDisplay
 {
+	private String windowMessage;
+	private ImageIcon chatIcon;
+	
+	public ChatDisplay()
+	{
+		windowMessage = "Thank you for choosing chatbot! :D";
+		chatIcon = new ImageIcon(getClass().getResource("images/vaultboy.png"));
+	}
 	
 	/**
 	 * Takes the users input from a pop-up.
@@ -17,7 +26,7 @@ public class ChatDisplay
 	public String getUserInput(String input)
 	{
 		String answer = "";
-		answer = JOptionPane.showInputDialog(null, input);
+		answer = JOptionPane.showInputDialog(null, input, windowMessage, JOptionPane.INFORMATION_MESSAGE, chatIcon, null, "Type here please").toString();
 		return answer;
 	}
 	
@@ -27,6 +36,6 @@ public class ChatDisplay
 	 */
 	public void displayText(String displayText)
 	{
-		JOptionPane.showMessageDialog(null, displayText);
+		JOptionPane.showMessageDialog(null, displayText, windowMessage, JOptionPane.PLAIN_MESSAGE, chatIcon);
 	}
 }

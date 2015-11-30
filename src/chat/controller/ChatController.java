@@ -1,7 +1,7 @@
 package chat.controller;
 
 import chat.model.Chatbot;
-import chat.view.ChatDisplay;
+import chat.view.*;
 
 /**
  * 
@@ -12,6 +12,8 @@ public class ChatController
 {
 	private Chatbot roryBot;
 	private ChatDisplay display;
+	private ChatFrame baseFrame;
+	private ChatPanel basePanel;
 
 	public ChatController()
 	{
@@ -29,7 +31,7 @@ public class ChatController
 	private void chat()
 	{
 		String textFromUser = display.getUserInput("Talk to the chatbot");
-		
+
 		while (roryBot.lengthChecker(textFromUser))
 		{
 			if (roryBot.contentChecker(textFromUser))
@@ -49,10 +51,50 @@ public class ChatController
 				display.displayText("You sure seem excited for the election " + roryBot.getUserName() + ". Me too!");
 				display.displayText(roryBot.processQuestion(textFromUser));
 			}
-			
+
 			textFromUser = display.getUserInput("wow " + textFromUser);
-			
+
 		}
 
+	}
+
+	public Chatbot getRoryBot()
+	{
+		return roryBot;
+	}
+
+	public void setRoryBot(Chatbot roryBot)
+	{
+		this.roryBot = roryBot;
+	}
+
+	public ChatDisplay getDisplay()
+	{
+		return display;
+	}
+
+	public void setDisplay(ChatDisplay display)
+	{
+		this.display = display;
+	}
+
+	public ChatFrame getBaseFrame()
+	{
+		return baseFrame;
+	}
+
+	public void setBaseFrame(ChatFrame baseFrame)
+	{
+		this.baseFrame = baseFrame;
+	}
+
+	public ChatPanel getBasePanel()
+	{
+		return basePanel;
+	}
+
+	public void setBasePanel(ChatPanel basePanel)
+	{
+		this.basePanel = basePanel;
 	}
 }

@@ -33,8 +33,8 @@ public class Chatbot
 
 	private void buildMemesList()
 	{
-		this.memesList.add("Cute Animals");
-		this.memesList.add("Doge");
+		this.memesList.add("cute animals");
+		this.memesList.add("doge");
 		this.memesList.add("Just walk up and down smash?");
 		this.memesList.add("Wombo Combo");
 		this.memesList.add("Just Do It");
@@ -52,15 +52,15 @@ public class Chatbot
 		this.politicalTopicList.add("Hillary Clinton");
 		this.politicalTopicList.add("Joe Biden");
 		this.politicalTopicList.add("election");
-		this.politicalTopicList.add("democrat");
-		this.politicalTopicList.add("republican");
+		this.politicalTopicList.add("Democrat");
+		this.politicalTopicList.add("Republican");
 		this.politicalTopicList.add("liberal");
 		this.politicalTopicList.add("conservative");
 		this.politicalTopicList.add("Ben Carson");
 		this.politicalTopicList.add("Marco Rubio");
 		this.politicalTopicList.add("Carly Fiorina");
 		this.politicalTopicList.add("vote");
-		this.politicalTopicList.add("11/8/2015");
+		this.politicalTopicList.add("11/4/16");
 	}
 
 	/**
@@ -149,6 +149,42 @@ public class Chatbot
 		}
 
 		return hasMeme;
+	}
+
+	public boolean keyboardMashChecker(String currentInput)
+	{
+		boolean isMash = false;
+
+		if (currentInput.contains("sdf"))
+		{
+			isMash = true;
+		}
+		if (currentInput.contains("dfg"))
+		{
+			isMash = true;
+		}
+		if (currentInput.contains("cvb"))
+		{
+			isMash = true;
+		}
+		if (currentInput.contains(",./"))
+		{
+			isMash = true;
+		}
+
+		return isMash;
+	}
+
+	public boolean quitChecker(String currentInput)
+	{
+		boolean isQuit = false;
+
+		if (currentInput.toLowerCase() == ("quit".toLowerCase()))
+		{
+			isQuit = true;
+		}
+
+		return isQuit;
 	}
 
 	public String processQuestion(String currentInput)

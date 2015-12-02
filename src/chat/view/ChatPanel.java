@@ -43,14 +43,15 @@ public class ChatPanel extends JPanel
 
 	private void setupLayout()
 	{
-		baseLayout.putConstraint(SpringLayout.SOUTH, promptLabel, -30, SpringLayout.NORTH, inputTextField);
 		baseLayout.putConstraint(SpringLayout.EAST, promptLabel, -190, SpringLayout.EAST, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, inputTextField, -43, SpringLayout.NORTH, readTextButton);
 		baseLayout.putConstraint(SpringLayout.SOUTH, readTextButton, -28, SpringLayout.SOUTH, this);
 		baseLayout.putConstraint(SpringLayout.EAST, readTextButton, -40, SpringLayout.EAST, this);
-		baseLayout.putConstraint(SpringLayout.EAST, inputTextField, 0, SpringLayout.EAST, textViewArea);
 		baseLayout.putConstraint(SpringLayout.NORTH, textViewArea, 64, SpringLayout.NORTH, this);
 		baseLayout.putConstraint(SpringLayout.EAST, textViewArea, -165, SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, promptLabel, -158, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, inputTextField, 30, SpringLayout.SOUTH, promptLabel);
+		baseLayout.putConstraint(SpringLayout.WEST, inputTextField, 0, SpringLayout.WEST, textViewArea);
+		baseLayout.putConstraint(SpringLayout.EAST, inputTextField, 0, SpringLayout.EAST, textViewArea);
 	}
 
 	private void setupListeners()
@@ -60,6 +61,18 @@ public class ChatPanel extends JPanel
 			public void actionPerformed(ActionEvent click)
 			{
 
+				// Grab user text
+				String userText = inputTextField.getText();
+				// send the text to the controller
+				// give text to chatbot to process
+				// get chatbots answer
+				String response = baseController.fromUserToChatbot(userText);
+				// display users text
+				textViewArea.append("\nUser: " + userText);
+				// display answer
+				textViewArea.append("\nChatbot: " + response);
+				// clear user field
+				inputTextField.setText("");
 			}
 		});
 	}
@@ -69,9 +82,9 @@ public class ChatPanel extends JPanel
 		return baseController;
 	}
 
-	public void setBaseController(ChatController baseController)
+	public JButton getReadTextButton()
 	{
-		this.baseController = baseController;
+		return readTextButton;
 	}
 
 	public SpringLayout getBaseLayout()
@@ -104,9 +117,19 @@ public class ChatPanel extends JPanel
 		this.textViewArea = textViewArea;
 	}
 
-	public JButton getReadTextButton()
+	public JLabel getPromptLabel()
 	{
-		return readTextButton;
+		return promptLabel;
+	}
+
+	public void setPromptLabel(JLabel promptLabel)
+	{
+		this.promptLabel = promptLabel;
+	}
+
+	public void setBaseController(ChatController baseController)
+	{
+		this.baseController = baseController;
 	}
 
 	public void setReadTextButton(JButton readTextButton)

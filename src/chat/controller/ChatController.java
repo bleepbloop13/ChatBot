@@ -20,42 +20,39 @@ public class ChatController
 		display = new ChatDisplay();
 		String user = display.getUserInput("What is your name?");
 		roryBot = new Chatbot(user);
+		baseFrame = new ChatFrame(this);
 	}
 
 	public void start()
 	{
 		display.displayText("Hello " + roryBot.getUserName());
-		chat();
+		//chat();
 	}
 
 	private void chat()
 	{
-		String textFromUser = display.getUserInput("Talk to the chatbot");
-
-		while (roryBot.lengthChecker(textFromUser))
+		String conversation = display.getUserInput("What would you like to talk about today?");
+		while (roryBot.lengthChecker(conversation))
 		{
-			if (roryBot.contentChecker(textFromUser))
-			{
-				display.displayText("Wow, I had no idea you loved " + roryBot.getContent());
-				display.displayText(roryBot.processQuestion(textFromUser));
-			}
-
-			else if (roryBot.memeChecker(textFromUser))
-			{
-				display.displayText("Oh boy, " + roryBot.getUserName() + ", these are my favorite memes: " + roryBot.getMemesList());
-				display.displayText(roryBot.processQuestion(textFromUser));
-			}
-
-			else if (roryBot.politicalTopicChecker(textFromUser))
-			{
-				display.displayText("You sure seem excited for the election " + roryBot.getUserName() + ". Me too!");
-				display.displayText(roryBot.processQuestion(textFromUser));
-			}
-
-			textFromUser = display.getUserInput("wow " + textFromUser);
-
+			conversation = roryBot.processQuestion(conversation);
+			conversation = display.getUserInput(conversation);
 		}
 
+	}
+
+	public String fromUserToChatbot(String conversation)
+	{
+		String botResponse = "";
+		
+		botResponse = roryBot.processQuestion(conversation);
+		
+		return botResponse;
+	}
+	
+	private void shutDown()
+	{
+		display.displayText("Goodbye, " + roryBot.getUserName() + " it has been my pleasure to talk with you");
+		System.exit(0);
 	}
 
 	public Chatbot getRoryBot()

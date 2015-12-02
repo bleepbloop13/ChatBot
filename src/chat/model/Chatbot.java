@@ -192,6 +192,11 @@ public class Chatbot
 		String answer;
 		answer = "oh, what else would you like to talk about?";
 		int newTopic = (int) (Math.random() * 5); // Generates a number between 0 and 4
+		
+		if(keyboardMashChecker(currentInput))
+		{
+			return "Stop mashing the keyboard!";
+		}
 
 		switch (newTopic)
 		{

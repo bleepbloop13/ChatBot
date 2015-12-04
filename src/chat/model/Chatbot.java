@@ -174,26 +174,34 @@ public class Chatbot
 
 		return isMash;
 	}
-
+	
+	/*
+	 * Checks the input to see if user wants to quit.
+	 */
 	public boolean quitChecker(String currentInput)
 	{
 		boolean isQuit = false;
 
-		if (currentInput.toLowerCase() == ("quit".toLowerCase()))
+		if (currentInput.toLowerCase().equals("quit"))
 		{
 			isQuit = true;
 		}
 
 		return isQuit;
 	}
+	/**
+	 * Takes input and puts it through a switch case statement 
+	 * @param currentInput
+	 * @return
+	 */
 
 	public String processQuestion(String currentInput)
 	{
 		String answer;
 		answer = "oh, what else would you like to talk about?";
 		int newTopic = (int) (Math.random() * 5); // Generates a number between 0 and 4
-		
-		if(keyboardMashChecker(currentInput))
+
+		if (keyboardMashChecker(currentInput))
 		{
 			return "Stop mashing the keyboard!";
 		}

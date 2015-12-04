@@ -6,7 +6,7 @@ import chat.view.*;
 /**
  * 
  * @author Rory Baker
- * @version 1.6 11/5/15 Added use to processQuestion method
+ * @version 1.7 12/4/15 Final polishing
  */
 public class ChatController
 {
@@ -15,6 +15,9 @@ public class ChatController
 	private ChatFrame baseFrame;
 	private ChatPanel basePanel;
 
+	/*
+	 * 
+	 */
 	public ChatController()
 	{
 		display = new ChatDisplay();
@@ -26,9 +29,12 @@ public class ChatController
 	public void start()
 	{
 		display.displayText("Hello " + roryBot.getUserName());
-		//chat();
+		// chat();
 	}
 
+	/*
+	 * 
+	 */
 	private void chat()
 	{
 		String conversation = display.getUserInput("What would you like to talk about today?");
@@ -40,15 +46,25 @@ public class ChatController
 
 	}
 
+	/*
+	 * 
+	 */
 	public String fromUserToChatbot(String conversation)
 	{
 		String botResponse = "";
-		
+
+		if (roryBot.quitChecker(conversation))
+		{
+			shutDown();
+		}
 		botResponse = roryBot.processQuestion(conversation);
-		
+
 		return botResponse;
 	}
-	
+
+	/*
+	 * 
+	 */
 	private void shutDown()
 	{
 		display.displayText("Goodbye, " + roryBot.getUserName() + " it has been my pleasure to talk with you");

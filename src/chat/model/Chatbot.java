@@ -26,7 +26,7 @@ public class Chatbot
 		this.userName = userName;
 		this.memesList = new ArrayList<String>();
 		this.politicalTopicList = new ArrayList<String>();
-		this.content = "Super Smash Bros Melee";
+		this.content = "Super Smash Bros Melee for the Nintendo GameCube";
 		buildMemesList();
 		buildPoliticalTopicsList();
 	}

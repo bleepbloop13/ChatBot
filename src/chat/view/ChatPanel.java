@@ -110,6 +110,13 @@ public class ChatPanel extends JPanel
 				inputTextField.setText("");
 			}
 		});
+		tweetButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				baseController.sendTweet("I, Rory, just tweeted from my Java Chatbot program! #APCSRocks #Memelord @CTECNow Thanks @cscheerleader & @codyhenrichsen!");
+			}
+		});
 	}
 
 	public ChatController getBaseController()

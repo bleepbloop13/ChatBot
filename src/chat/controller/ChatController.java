@@ -1,12 +1,12 @@
 package chat.controller;
 
-import chat.model.Chatbot;
+import chat.model.*;
 import chat.view.*;
 
 /**
  * 
  * @author Rory Baker
- * @version 1.7 12/4/15 Final polishing
+ * @version 1.8 3/7/16 Added handleErrors method.
  */
 public class ChatController
 {
@@ -14,12 +14,15 @@ public class ChatController
 	private ChatDisplay display;
 	private ChatFrame baseFrame;
 	private ChatPanel basePanel;
+	private CTECTwitter myTwitter;
+	
 
 	/*
 	 * 
 	 */
 	public ChatController()
 	{
+		myTwitter = new CTECTwitter(this);
 		display = new ChatDisplay();
 		String user = display.getUserInput("What is your name?");
 		roryBot = new Chatbot(user);
@@ -70,7 +73,17 @@ public class ChatController
 		display.displayText("Goodbye, " + roryBot.getUserName() + " it has been my pleasure to talk with you");
 		System.exit(0);
 	}
-
+	
+	public void handleErrors(String error)
+	{
+		display.displayText(error);
+	}
+	
+	public void sendTweet(String tweet)
+	{
+		myTwitter.sendTweet(tweet);
+	}
+	
 	public Chatbot getRoryBot()
 	{
 		return roryBot;

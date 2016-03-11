@@ -30,7 +30,7 @@ public class CTECTwitter
 		{
 			chatbotTwitter.updateStatus(tweet);
 		}
-		catch(TwitterException error)
+		catch (TwitterException error)
 		{
 			baseController.handleErrors(error.getErrorMessage());
 		}

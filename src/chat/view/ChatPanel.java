@@ -38,7 +38,7 @@ public class ChatPanel extends JPanel
 		setupPanel();
 		setupListeners();
 	}
-	
+
 	private void setupChatPane()
 	{
 		textViewArea.setLineWrap(true);
@@ -86,7 +86,7 @@ public class ChatPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.EAST, saveButton, -6, SpringLayout.WEST, chatButton);
 		baseLayout.putConstraint(SpringLayout.SOUTH, chatButton, -97, SpringLayout.SOUTH, this);
 		baseLayout.putConstraint(SpringLayout.EAST, chatButton, -123, SpringLayout.EAST, this);
-		
+
 	}
 
 	private void setupListeners()
@@ -117,6 +117,17 @@ public class ChatPanel extends JPanel
 				baseController.sendTweet("I, Rory, just tweeted from my Java Chatbot program! #APCSRocks #Memelord @CTECNow Thanks @cscheerleader & @codyhenrichsen!");
 			}
 		});
+		checkTwitterButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				String user = inputTextField.getText();
+				String results = baseController.analyze(user);
+				textViewArea.setText(results);
+			}
+
+		});
+
 	}
 
 	public ChatController getBaseController()

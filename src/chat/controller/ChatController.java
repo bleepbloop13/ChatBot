@@ -15,7 +15,6 @@ public class ChatController
 	private ChatFrame baseFrame;
 	private ChatPanel basePanel;
 	private CTECTwitter myTwitter;
-	
 
 	/*
 	 * 
@@ -49,6 +48,11 @@ public class ChatController
 
 	}
 
+	public String analyze(String input)
+	{
+		return null;
+	}
+
 	/*
 	 * 
 	 */
@@ -73,17 +77,17 @@ public class ChatController
 		display.displayText("Goodbye, " + roryBot.getUserName() + " it has been my pleasure to talk with you");
 		System.exit(0);
 	}
-	
+
 	public void handleErrors(String error)
 	{
 		display.displayText(error);
 	}
-	
+
 	public void sendTweet(String tweet)
 	{
 		myTwitter.sendTweet(tweet);
 	}
-	
+
 	public Chatbot getRoryBot()
 	{
 		return roryBot;

@@ -48,9 +48,11 @@ public class ChatController
 
 	}
 
-	public String analyze(String input)
+	public String analyze(String userName)
 	{
-		return null;
+		String userAnalysis = "The Twitter user " + userName + "hass ....";
+		
+		return userAnalysis;
 	}
 
 	/*

@@ -66,7 +66,16 @@ public class CTECTwitter
 	}
 	private String removePunctuation(String currentString)
 	{
-		return null;
+		String punctuation = ".,'?!:;\"(){}^[]<>-";
+		String scrubbedString = "";
+		for (int i = 0; i < currentString.length();i++)
+		{
+			if(punctuation.indexOf(currentString.charAt(i)) == -1)
+			{
+				scrubbedString += currentString.charAt(i);
+			}
+		}
+		return scrubbedString;
 	}
 	private List removeCommonEnglishWords(List<String> wordList)
 	{

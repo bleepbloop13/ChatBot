@@ -1,7 +1,10 @@
 package chat.model;
 
-import java.util.ArrayList;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.List;
+import java.util.Scanner;
+
 import twitter4j.*;
 import chat.controller.ChatController;
 
@@ -12,16 +15,14 @@ import chat.controller.ChatController;
  */
 public class CTECTwitter
 {
-	private ArrayList<Status> statusList;
-	private ArrayList<String> wordsList;
+	private List<Status> statusList;
+	private List<String> wordsList;
 	private Twitter chatbotTwitter;
 	private ChatController baseController;
 
 	public CTECTwitter(ChatController baseController)
 	{
 		this.baseController = baseController;
-		this.statusList = new ArrayList<Status>();
-		this.wordsList = new ArrayList<String>();
 		this.chatbotTwitter = TwitterFactory.getSingleton();
 	}
 
@@ -36,6 +37,36 @@ public class CTECTwitter
 			baseController.handleErrors(error.getErrorMessage());
 		}
 		return true;
+	}
+
+	private String[] importWordsToArray()
+	{
+		String[] boringWords;
+		int wordCount = 0;
+		try
+		{
+			Scanner wordFile = new Scanner(new File("commonWords.txt"));
+			while (wordFile.hasNext())
+			{
+				wordCount++;
+				wordFile.next();
+			}
+			wordFile.reset();
+			boringWords = new String[wordCount];
+			int boringWordCount = 0;
+			while (wordFile.hasNext())
+			{
+				boringWords[boringWordCount] = wordFile.next();
+				boringWordCount++;
+			}
+			wordFile.close();
+		}
+		catch (FileNotFoundException e)
+		{
+			baseController.handleErrors(e.getMessage());
+			return new String[0];
+		}
+		return boringWords;
 	}
 
 	public void loadTweets(String twitterHandle) throws TwitterException
@@ -59,33 +90,49 @@ public class CTECTwitter
 		removeCommonEnglishWords(wordsList);
 		removeEmptyText();
 	}
-	
+
 	private void removeEmptyText()
 	{
 		for (int spot = 0; spot < wordsList.size(); spot++)
 		{
-			if(wordsList.get(spot).equals(""))
+			if (wordsList.get(spot).equals(""))
 			{
 				wordsList.remove(spot);
 				spot--;
 			}
 		}
 	}
+
 	private String removePunctuation(String currentString)
 	{
 		String punctuation = ".,'?!:;\"(){}^[]<>-";
 		String scrubbedString = "";
-		for (int i = 0; i < currentString.length();i++)
+		for (int i = 0; i < currentString.length(); i++)
 		{
-			if(punctuation.indexOf(currentString.charAt(i)) == -1)
+			if (punctuation.indexOf(currentString.charAt(i)) == -1)
 			{
 				scrubbedString += currentString.charAt(i);
 			}
 		}
 		return scrubbedString;
 	}
-	private List removeCommonEnglishWords(List<String> wordList)
+
+	@SuppressWarnings("unchecked")
+	private List<String> removeCommonEnglishWords(List<String> wordList)
 	{
-		return null;
+		String[] boringWords = importWordsToArray();
+		for (int count = 0; count < wordList.size(); count++)
+		{
+			for (int removeSpot = 0; removeSpot < boringWords.length; removeSpot++)
+			{
+				if (wordList.get(count).equalsIgnoreCase(boringWords[removeSpot]))
+				{
+					wordList.remove(count);
+					count--;
+					removeSpot = boringWords.length;
+				}
+			}
+		}
+		return wordList;
 	}
 }

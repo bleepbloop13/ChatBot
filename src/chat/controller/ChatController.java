@@ -1,5 +1,6 @@
 package chat.controller;
 
+import twitter4j.TwitterException;
 import chat.model.*;
 import chat.view.*;
 
@@ -50,9 +51,33 @@ public class ChatController
 
 	public String analyze(String userName)
 	{
-		String userAnalysis = "The Twitter user " + userName + "hass ....";
+		String userAnalysis = "The Twitter user " + userName + "has many tweets";
 		
+		try
+		{
+			myTwitter.loadTweets(userName);
+		}
+		catch(TwitterException error)
+		{
+			handleErrors(error.getErrorMessage());
+		}
+		userAnalysis += myTwitter.topResults();
 		return userAnalysis;
+	}
+	
+	public String investigateTwitter(String query)
+	{
+		String queryInvestigate = "The query " + query + " has many results";
+		
+		try
+		{
+			queryInvestigate += myTwitter.sampleInvestigation(query);
+		}
+		catch(TwitterException error)
+		{
+			handleErrors(error.getErrorMessage());
+		}
+		return queryInvestigate;
 	}
 
 	/*
@@ -70,6 +95,8 @@ public class ChatController
 
 		return botResponse;
 	}
+	
+	
 
 	/*
 	 * 

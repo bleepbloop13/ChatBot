@@ -1,7 +1,5 @@
 package chat.model;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -43,15 +41,14 @@ public class CTECTwitter
 	{
 		String[] boringWords;
 		int wordCount = 0;
-		try
-		{
-			Scanner wordFile = new Scanner(new File("commonWords.txt"));
+		
+			Scanner wordFile = new Scanner(getClass().getResourceAsStream("commonWords.txt"));
 			while (wordFile.hasNext())
 			{
 				wordCount++;
 				wordFile.next();
 			}
-			wordFile.reset();
+			wordFile = new Scanner(getClass().getResourceAsStream("commonWords.txt"));
 			boringWords = new String[wordCount];
 			int boringWordCount = 0;
 			while (wordFile.hasNext())
@@ -60,18 +57,17 @@ public class CTECTwitter
 				boringWordCount++;
 			}
 			wordFile.close();
-		}
-		catch (FileNotFoundException e)
-		{
-			baseController.handleErrors(e.getMessage());
-			return new String[0];
-		}
+		
+		
+		
 		return boringWords;
 	}
 
 	public void loadTweets(String twitterHandle) throws TwitterException
 	{
-		Paging statusPage = new Paging(1, 200);
+		statusList.clear();
+		wordsList.clear();
+		Paging statusPage = new Paging(1, 2000);
 		int page = 1;
 		while (page <= 10)
 		{
@@ -134,5 +130,56 @@ public class CTECTwitter
 			}
 		}
 		return wordList;
+	}
+
+	public String sampleInvestigation(String userQuery) throws TwitterException
+	{
+		String results = "";
+		
+		Query query = new Query(userQuery);
+		query.setCount(100);
+		query.setGeoCode(new GeoLocation(40.587521, -111.869178), 50, Query.MILES);
+		query.setSince("2016-1-1");
+		try
+		{
+			QueryResult result = chatbotTwitter.search(query);
+			results += "Count : " + result.getTweets().size();
+			for(Status tweet : result.getTweets())
+			{
+				results += "@" + tweet.getUser().getName() + ": " + tweet.getText() + "\n";
+			}
+		}
+		catch (TwitterException error)
+		{
+			error.printStackTrace();
+		}
+		return results;
+	}
+	
+	
+	public String topResults()
+	{
+		String tweetResults = "";
+		int topWordLocation = 0;
+		int topCount = 0;
+		for (int index = 0; index < wordsList.size(); index++)
+		{
+			int wordUseCount = 1;
+			for (int spot = index + 1; spot < wordsList.size(); spot++)
+			{
+				if (wordsList.get(index).equals(wordsList.get(spot)))
+				{
+					wordUseCount++;
+				}
+				if (wordUseCount > topCount)
+				{
+					topCount = wordUseCount;
+					topWordLocation = index;
+				}
+			}
+		}
+		tweetResults = "The top word in the tweets was " + wordsList.get(topWordLocation) 
+				+ " and it was used " + topCount + " times!";
+		return tweetResults;
 	}
 }

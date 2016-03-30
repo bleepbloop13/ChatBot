@@ -136,9 +136,9 @@ public class CTECTwitter
 	{
 		String results = "";
 		
-		Query query = new Query(userQuery);
+		Query query = new Query();
 		query.setCount(100);
-		query.setGeoCode(new GeoLocation(40.587521, -111.869178), 50, Query.MILES);
+		query.setGeoCode(new GeoLocation(40.517691, -111.871743), 15, Query.MILES);
 		query.setSince("2016-1-1");
 		try
 		{

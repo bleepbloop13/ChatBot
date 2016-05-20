@@ -37,6 +37,7 @@ public class CTECTwitter
 		return true;
 	}
 
+	@SuppressWarnings("resource")
 	private String[] importWordsToArray()
 	{
 		String[] boringWords;
